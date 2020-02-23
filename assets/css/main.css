@@ -1,0 +1,23 @@
+/* Navbar */
+.nav__logo {
+  object-fit: contain;
+  height: 64px;
+}
+
+/* Main section */
+.main {
+  background-color: crimson;
+}
+a.canvasjs-chart-credit {
+  display: none;
+}
+
+.chart__label {
+  padding-top: 1.5rem;
+  font-size: 0.8rem;
+  height: 50px;
+}
+
+.btn {
+  height: 100%;
+}
