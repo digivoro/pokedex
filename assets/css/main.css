@@ -12,12 +12,36 @@ a.canvasjs-chart-credit {
   display: none;
 }
 
+.label__list {
+  padding: 0;
+}
 .chart__label {
-  padding-top: 1.5rem;
+  padding-top: 1rem;
   font-size: 0.8rem;
-  height: 50px;
+  height: 35px;
 }
 
-.btn {
-  height: 100%;
+#poke-image1,
+#poke-image2 {
+  height: 128px;
+}
+
+.container {
+  width: 90%;
+}
+
+.vs {
+  z-index: 0;
+}
+
+.card {
+  z-index: 1;
+}
+
+#btn1 {
+  background-color: #2196f3;
+}
+
+#btn2 {
+  background-color: #ff3d00;
 }

@@ -19,15 +19,8 @@ function setPokemonData(cardNumber, pokemonData) {
   const pokeTypeElem = `#poke-type${cardNumber}`;
   const pokeImageElem = `#poke-image${cardNumber}`;
 
-  const pokeHPElem = `#poke-hp${cardNumber}`;
-  const pokeAtkElem = `#poke-atk${cardNumber}`;
-  const pokeDefElem = `#poke-def${cardNumber}`;
-  const pokeSAtkElem = `#poke-satk${cardNumber}`;
-  const pokeSDefElem = `#poke-sdef${cardNumber}`;
-  const pokeSpdElem = `#poke-spd${cardNumber}`;
   const { name, types, sprites, id, stats } = pokemonData;
 
-  const [spd, sdef, satk, def, atk, hp] = stats;
   let container = `#chartContainer${cardNumber}`;
 
   $(pokeNameElem).text(name.toUpperCase());
@@ -37,39 +30,9 @@ function setPokemonData(cardNumber, pokemonData) {
     $(pokeTypeElem).append(`<span class="new badge" data-badge-caption="">${type.type.name.toUpperCase()}</span>`);
   }
   $(pokeImageElem).attr("src", sprites.front_default);
-  // $(pokeHPElem).text(hp.base_stat);
-  // $(pokeAtkElem).text(atk.base_stat);
-  // $(pokeDefElem).text(def.base_stat);
-  // $(pokeSAtkElem).text(satk.base_stat);
-  // $(pokeSDefElem).text(sdef.base_stat);
-  // $(pokeSpdElem).text(spd.base_stat);
 
   createChart(cardNumber, stats, container);
 }
-
-$(function() {
-  getPokemon(151, 1);
-  getPokemon(150, 2);
-});
-
-$("#btn1").click(function() {
-  getPokemon(
-    $("#input1")
-      .val()
-      .toLowerCase(),
-    1
-  );
-});
-$("#btn2").click(function() {
-  getPokemon(
-    $("#input2")
-      .val()
-      .toLowerCase(),
-    2
-  );
-});
-
-window.onload = function() {};
 
 function createChart(cardNumber, stats, container) {
   let [spd, sdef, satk, def, atk, hp] = stats;
@@ -93,6 +56,7 @@ function createChart(cardNumber, stats, container) {
   }
   var options = {
     animationEnabled: true,
+    height: 320,
     axisY: {
       tickThickness: 0,
       lineThickness: 0,
@@ -106,7 +70,6 @@ function createChart(cardNumber, stats, container) {
         return " ";
       }
     },
-    // dataPointMaxWidth: 30,
     data: [
       {
         indexLabelFontSize: 14,
@@ -124,3 +87,26 @@ function createChart(cardNumber, stats, container) {
 
   $(container).CanvasJSChart(options);
 }
+
+$(function() {
+  getPokemon(6, 1);
+  getPokemon(150, 2);
+  $("#form1").submit(function(e) {
+    let id1 = $("#input1").val();
+    e.preventDefault();
+    getPokemon(id1.toLowerCase(), 1);
+    $("#input1").val("");
+  });
+
+  $("#form2").submit(function(e) {
+    let id2 = $("#input2").val();
+    e.preventDefault();
+
+    getPokemon(id2.toLowerCase(), 2);
+    $("#input2").val("");
+  });
+
+  $("input.autocomplete").autocomplete({
+    data: pokeData
+  });
+});

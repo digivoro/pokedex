@@ -15,91 +15,59 @@
     <!-- Navbar -->
     <nav>
       <div class="nav-wrapper white">
-        <a href="#" class="brand-logo"><img class="nav__logo" src="https://user-images.githubusercontent.com/37731582/39395092-949193b4-4ada-11e8-9f21-c049a771bbcc.png" alt=""/></a>
+        <a href="index.html" class="brand-logo"><img class="nav__logo" src="https://user-images.githubusercontent.com/37731582/39395092-949193b4-4ada-11e8-9f21-c049a771bbcc.png" alt=""/></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="sass.html">Sass</a></li>
-          <li><a href="badges.html">Components</a></li>
-          <li><a href="collapsible.html">JavaScript</a></li>
+          <li><a href="sass.html" class="black-text">Pokédex</a></li>
+          <li><a href="badges.html" class="black-text">Poké VS</a></li>
         </ul>
       </div>
     </nav>
 
     <!-- Main section -->
-    <section class="section">
+    <section class="section container">
       <div class="row">
+        <!-- Pokeball Banner -->
+        <div class="col s12 center">
+          <img src="https://img.icons8.com/color/85/000000/fight-pokemon.png" />
+        </div>
+
         <!-- Card 1 -->
-
         <div class="col s12 m3">
-          <div class="row">
-            <div class="input-field col s9">
-              <input type="text" id="input1" class="autocomplete" />
-              <label for="input1">Nombre o ID Pokémon</label>
-            </div>
-            <div class="col s3">
-              <button id="btn1" class="btn waves-effect" type="submit" name="action">
-                GO
-              </button>
-            </div>
-          </div>
-
           <div class="row">
             <div class="card hoverable s12">
               <div class="card-content center">
-                <span id="poke-name1" class="card-title grey-text">Card Title</span>
-                <p>ID <span id="poke-number1"></span></p>
+                <span id="poke-name1" class="card-title">POKEMON NAME</span>
+                <p class="grey-text">ID <span id="poke-number1"></span></p>
                 <img id="poke-image1" src="" />
               </div>
               <div class="card-action">
-                <p>TIPO <span id="poke-type1"></span></p>
+                <p class="grey-text">TIPO <span id="poke-type1"></span></p>
               </div>
             </div>
           </div>
+          <div class="row">
+            <form id="form1" class="col s12">
+              <div class="row">
+                <div class="input-field col s9">
+                  <input id="input1" type="text" class="autocomplete" />
+                  <label for="input1">Nombre/ID P1</label>
+                </div>
+                <div class="input-field col s3">
+                  <button id="btn1" class="btn waves-effect" type="submit" name="action">Go!</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
+
         <!-- VS Stats -->
-        <div class="col s12 m6 center">
-          <!-- <div class="row">
-            <div class="col s12"><h3>VS</h3></div>
-          </div>
+        <div class="vs col s12 m6 center">
           <div class="row">
-            <div id="poke-hp1" class="col s4">?</div>
-            <div class="col s4">HP</div>
-            <div id="poke-hp2" class="col s4">?</div>
-          </div>
-          <div class="row">
-            <div id="poke-atk1" class="col s4">?</div>
-            <div class="col s4">ATAQUE</div>
-            <div id="poke-atk2" class="col s4">?</div>
-          </div>
-          <div class="row">
-            <div id="poke-def1" class="col s4">?</div>
-            <div class="col s4">DEFENSA</div>
-            <div id="poke-def2" class="col s4">?</div>
-          </div>
-          <div class="row">
-            <div id="poke-satk1" class="col s4">?</div>
-            <div class="col s4">ATAQUE SP</div>
-            <div id="poke-satk2" class="col s4">?</div>
-          </div>
-          <div class="row">
-            <div id="poke-sdef1" class="col s4">?</div>
-            <div class="col s4">DEFENSA SP</div>
-            <div id="poke-sdef2" class="col s4">?</div>
-          </div>
-          <div class="row">
-            <div id="poke-spd1" class="col s4">?</div>
-            <div class="col s4">VELOCIDAD</div>
-            <div id="poke-spd2" class="col s4">?</div>
-          </div> -->
-          <div class="row">
-            <div class="col s12">
-              <img src="https://img.icons8.com/color/85/000000/fight-pokemon.png" />
-            </div>
-            <!-- <div class="col s6"></div> -->
             <div class="row">
               <div class="col s5">
                 <div id="chartContainer1"></div>
               </div>
-              <div class="col s2">
+              <div class="label__list col s2">
                 <p class="chart__label">PV</p>
                 <p class="chart__label">ATAQUE</p>
                 <p class="chart__label">DEFENSA</p>
@@ -111,45 +79,50 @@
                 <div id="chartContainer2"></div>
               </div>
             </div>
-
-            <!-- <div id="chartContainer" class="col s12"></div> -->
           </div>
         </div>
 
         <!-- Card 2 -->
         <div class="col s12 m3">
           <div class="row">
-            <div class="input-field col s9">
-              <input type="text" id="input2" class="autocomplete" />
-              <label for="input2">Nombre o ID Pokémon</label>
-            </div>
-            <div class="col s3">
-              <button id="btn2" class="btn waves-effect" type="submit" name="action">
-                GO
-              </button>
+            <div class="card hoverable">
+              <div class="card-content center">
+                <span id="poke-name2" class="card-title">POKEMON NAME</span>
+                <p class="grey-text">ID <span id="poke-number2"></span></p>
+                <img id="poke-image2" src="" />
+              </div>
+              <div class="card-action">
+                <p class="grey-text">TIPO <span id="poke-type2"></span></p>
+              </div>
             </div>
           </div>
-          <div class="card hoverable">
-            <div class="card-content center">
-              <span id="poke-name2" class="card-title grey-text">Card Title</span>
-              <p>ID <span id="poke-number2"></span></p>
-              <img id="poke-image2" src="" />
-            </div>
-            <div class="card-action">
-              <p>TIPO <span id="poke-type2"></span></p>
-            </div>
+          <div class="row">
+            <form id="form2" class="col s12">
+              <div class="row">
+                <div class="input-field col s9">
+                  <input id="input2" type="text" class="autocomplete" />
+                  <label for="input2">Nombre/ID P2</label>
+                </div>
+                <div class="input-field col s3">
+                  <button id="btn2" class="btn waves-effect" type="submit" name="action">Go!</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <!-- Materialize JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <!-- CanvasJS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/jquery.canvasjs.min.js"></script>
-    <!-- Site script -->
-    <script src="assets/js/main.js"></script>
+    <!-- Scripts -->
+    <div>
+      <!-- jQuery -->
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <!-- Materialize JS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <!-- CanvasJS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/jquery.canvasjs.min.js"></script>
+      <!-- Site script -->
+      <script src="assets/js/main.js"></script>
+    </div>
   </body>
 </html>
