@@ -1,3 +1,25 @@
+typeColors = {
+  normal: "#A8A878",
+  fire: "#F08030",
+  fighting: "#C03028",
+  water: "#6890F0",
+  flying: "#A890F0",
+  grass: "#78C850",
+  poison: "#A040A0",
+  electric: "#F8D030",
+  ground: "#E0C068",
+  psychic: "#F85888",
+  rock: "#B8A038",
+  ice: "#98D8D8",
+  bug: "#A8B820",
+  dragon: "#7038F8",
+  ghost: "#705898",
+  dark: "#705848",
+  steel: "#B8B8D0",
+  fairy: "#EE99AC",
+  unknown: "#68A090"
+};
+
 function getPokemon(id, cardNumber) {
   $.ajax({
     type: "GET",
@@ -27,7 +49,7 @@ function setPokemonData(cardNumber, pokemonData) {
   $(pokeNumberElem).text(id);
   $(pokeTypeElem).html(``);
   for (let type of types) {
-    $(pokeTypeElem).append(`<span class="new badge" data-badge-caption="">${type.type.name.toUpperCase()}</span>`);
+    $(pokeTypeElem).append(`<span class="new badge" style="background-color: ${typeColors[type.type.name]}" data-badge-caption="">${type.type.name.toUpperCase()}</span>`);
   }
   $(pokeImageElem).attr("src", sprites.front_default);
 
@@ -106,7 +128,7 @@ $(function() {
     $("#input2").val("");
   });
 
-  $("input.autocomplete").autocomplete({
-    data: pokeData
-  });
+  // $("input.autocomplete").autocomplete({
+  //   data: pokeData
+  // });
 });
