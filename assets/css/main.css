@@ -45,3 +45,11 @@ a.canvasjs-chart-credit {
 #btn2 {
   background-color: #ff3d00;
 }
+
+.card-content.grey {
+  height: 300px;
+}
+
+.pokemon .row {
+  margin-bottom: 0;
+}

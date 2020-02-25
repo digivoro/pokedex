@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Felipe Castro Richter" />
-    <title>Pokèdex</title>
+    <title>Pokédex</title>
 
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
@@ -31,26 +31,14 @@
           <img src="https://img.icons8.com/color/85/000000/fight-pokemon.png" />
         </div>
 
-        <!-- Card 1 -->
-        <div class="col s12 m3">
-          <div class="row">
-            <div class="card hoverable s12">
-              <div class="card-content center">
-                <span id="poke-name1" class="card-title">POKEMON NAME</span>
-                <p class="grey-text">ID <span id="poke-number1"></span></p>
-                <img id="poke-image1" src="" />
-              </div>
-              <div class="card-action">
-                <p class="grey-text">TIPO <span id="poke-type1"></span></p>
-              </div>
-            </div>
-          </div>
+        <!-- Pokemon -->
+        <div class="col s12 m4 pokemon">
           <div class="row">
             <form id="form1" class="col s12">
               <div class="row">
                 <div class="input-field col s9">
                   <input id="input1" type="text" class="autocomplete" />
-                  <label for="input1">Nombre/ID P1</label>
+                  <label for="input1">Nombre/ID Pokémon</label>
                 </div>
                 <div class="input-field col s3">
                   <button id="btn1" class="btn waves-effect" type="submit" name="action">Go!</button>
@@ -58,60 +46,54 @@
               </div>
             </form>
           </div>
-        </div>
-
-        <!-- VS Stats -->
-        <div class="vs col s12 m6 center">
-          <div class="row">
-            <div class="row">
-              <div class="col s5">
-                <div id="chartContainer1"></div>
-              </div>
-              <div class="label__list col s2">
-                <p class="chart__label">PV</p>
-                <p class="chart__label">ATAQUE</p>
-                <p class="chart__label">DEFENSA</p>
-                <p class="chart__label">ATAQUE ESP</p>
-                <p class="chart__label">DEFENSA ESP</p>
-                <p class="chart__label">VELOCIDAD</p>
-              </div>
-              <div class="col s5">
-                <div id="chartContainer2"></div>
-              </div>
+          <div class="card hoverable s12">
+            <div class="card-content center">
+              <span id="poke-name1" class="card-title">POKEMON NAME</span>
+              <p class="grey-text">ID <span id="poke-number1"></span></p>
+              <img id="poke-image1" src="" />
+            </div>
+            <div class="card-action">
+              <p class="grey-text">TIPO <span id="poke-type1"></span></p>
             </div>
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="col s12 m3">
-          <div class="row">
-            <div class="card hoverable">
-              <div class="card-content center">
-                <span id="poke-name2" class="card-title">POKEMON NAME</span>
-                <p class="grey-text">ID <span id="poke-number2"></span></p>
-                <img id="poke-image2" src="" />
-              </div>
-              <div class="card-action">
-                <p class="grey-text">TIPO <span id="poke-type2"></span></p>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <form id="form2" class="col s12">
+        <!-- Pokemon Info -->
+        <div class="col s12 m8">
+          <div class="card">
+            <div class="card-content">
               <div class="row">
-                <div class="input-field col s9">
-                  <input id="input2" type="text" class="autocomplete" />
-                  <label for="input2">Nombre/ID P2</label>
-                </div>
-                <div class="input-field col s3">
-                  <button id="btn2" class="btn waves-effect" type="submit" name="action">Go!</button>
-                </div>
+                <div class="col s3"></div>
+                <div class="col s9"></div>
               </div>
-            </form>
+              <div class="row">
+                <div class="col s3"></div>
+                <div class="col s9"></div>
+              </div>
+              <div class="row">
+                <div class="col s3"></div>
+                <div class="col s9"></div>
+              </div>
+              <div class="row">
+                <div class="col s3"></div>
+                <div class="col s9"></div>
+              </div>
+            </div>
+            <div class="card-tabs">
+              <ul class="tabs tabs-fixed-width">
+                <li class="tab"><a class="active" href="#stats">STATS</a></li>
+                <li class="tab"><a href="#abilities">ABILITIES</a></li>
+              </ul>
+            </div>
+            <div class="card-content grey lighten-4">
+              <div id="stats">
+                <div id="stats__graph"></div>
+              </div>
+              <div id="abilities"></div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+        
 
     <!-- Scripts -->
     <div>

@@ -20,22 +20,6 @@ typeColors = {
   unknown: "#68A090"
 };
 
-$(function() {
-  // Inicializar Tabs
-  $(".tabs").tabs();
-
-  // Mostrar Pokemon al cargar página
-  getPokemon(6, 1);
-
-  // Listener del form
-  $("#form1").submit(function(e) {
-    let id1 = $("#input1").val();
-    e.preventDefault();
-    getPokemon(id1.toLowerCase(), 1);
-    $("#input1").val("");
-  });
-});
-
 function getPokemon(id, cardNumber) {
   $.ajax({
     type: "GET",
@@ -51,7 +35,7 @@ function getPokemon(id, cardNumber) {
   });
 }
 
-async function setPokemonData(cardNumber, pokemonData) {
+function setPokemonData(cardNumber, pokemonData) {
   const pokeNameElem = `#poke-name${cardNumber}`;
   const pokeNumberElem = `#poke-number${cardNumber}`;
   const pokeTypeElem = `#poke-type${cardNumber}`;
@@ -59,7 +43,7 @@ async function setPokemonData(cardNumber, pokemonData) {
 
   const { name, types, sprites, id, stats } = pokemonData;
 
-  let container = `#stats__graph`;
+  let container = `#chartContainer${cardNumber}`;
 
   $(pokeNameElem).text(name.toUpperCase());
   $(pokeNumberElem).text(id);
@@ -69,9 +53,7 @@ async function setPokemonData(cardNumber, pokemonData) {
   }
   $(pokeImageElem).attr("src", sprites.front_default);
 
-  createChart(2, stats, container);
-  $("#abilities").html("");
-  await $("#abilities").append(crearAbility(pokemonData));
+  createChart(cardNumber, stats, container);
 }
 
 function createChart(cardNumber, stats, container) {
@@ -85,9 +67,18 @@ function createChart(cardNumber, stats, container) {
   atk = atk.base_stat;
   hp = hp.base_stat;
 
+  if (cardNumber == 1) {
+    spd = -spd;
+    sdef = -sdef;
+    satk = -satk;
+    def = -def;
+    atk = -atk;
+    hp = -hp;
+    color = "#2196F3";
+  }
   var options = {
     animationEnabled: true,
-    height: 260,
+    height: 320,
     axisY: {
       tickThickness: 0,
       lineThickness: 0,
@@ -96,7 +87,10 @@ function createChart(cardNumber, stats, container) {
     },
     axisX: {
       tickThickness: 0,
-      lineThickness: 0
+      lineThickness: 0,
+      labelFormatter: function() {
+        return " ";
+      }
     },
     data: [
       {
@@ -108,14 +102,7 @@ function createChart(cardNumber, stats, container) {
         indexLabelFontFamily: "Roboto",
         color: color,
         type: "bar",
-        dataPoints: [
-          { y: spd, label: "Speed" },
-          { y: sdef, label: "Sp. Defense" },
-          { y: satk, label: "Sp. Attack" },
-          { y: def, label: "Defense" },
-          { y: atk, label: "Attack" },
-          { y: hp, label: "HP" }
-        ]
+        dataPoints: [{ y: spd }, { y: sdef }, { y: satk }, { y: def }, { y: atk }, { y: hp }]
       }
     ]
   };
@@ -123,35 +110,21 @@ function createChart(cardNumber, stats, container) {
   $(container).CanvasJSChart(options);
 }
 
-function crearAbility(pokemonData) {
-  let abilitiesHTML = "";
-  let abilityText = "";
+$(function() {
+  getPokemon(6, 1);
+  getPokemon(150, 2);
+  $("#form1").submit(function(e) {
+    let id1 = $("#input1").val();
+    e.preventDefault();
+    getPokemon(id1.toLowerCase(), 1);
+    $("#input1").val("");
+  });
 
-  for (const item of pokemonData.abilities) {
-    $.ajax({
-      type: "GET",
-      url: item.ability.url,
-      dataType: "json",
-      success: function(res) {
-        abilityText = res.effect_entries[0].effect;
-        console.log(abilityText);
-      },
-      error: function() {
-        console.log("crearAbility(): No se ha podido obtener la información");
-      }
-    });
+  $("#form2").submit(function(e) {
+    let id2 = $("#input2").val();
+    e.preventDefault();
 
-    abilitiesHTML += `<div class="row">
-      <div class="card">
-        <div class="card-content">
-          <div class="card-title">
-          ${item.ability.name.toUpperCase()}
-          </div>
-          <p id="abilityText${item}"></p>
-        </div>
-      </div>
-    </div>`;
-  }
-
-  return abilitiesHTML;
-}
+    getPokemon(id2.toLowerCase(), 2);
+    $("#input2").val("");
+  });
+});
