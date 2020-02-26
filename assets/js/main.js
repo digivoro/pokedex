@@ -25,7 +25,7 @@ $(function() {
   $(".tabs").tabs();
 
   // Mostrar Pokemon al cargar página
-  getPokemon(6, 1);
+  getPokemon(1, 1);
 
   // Listener del form
   $("#form1").submit(function(e) {
