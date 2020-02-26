@@ -53,3 +53,8 @@ a.canvasjs-chart-credit {
 .pokemon .row {
   margin-bottom: 0;
 }
+
+#btnRandom1 {
+  /* background-color: #ffb000; */
+  background-color: #d0106f;
+}

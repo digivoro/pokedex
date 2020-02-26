@@ -6,6 +6,8 @@
     <meta name="author" content="Felipe Castro Richter" />
     <title>Pokédex</title>
 
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/0013c2e76c.js" crossorigin="anonymous"></script>
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
     <!-- Site CSS -->
@@ -34,17 +36,20 @@
         <!-- Pokemon -->
         <div class="col s12 m4 pokemon">
           <div class="row">
-            <form id="form1" class="col s12">
+            <form id="form1" class="col s10">
               <div class="row">
                 <div class="input-field col s9">
                   <input id="input1" type="text" class="autocomplete" />
                   <label for="input1">Nombre/ID Pokémon</label>
                 </div>
                 <div class="input-field col s3">
-                  <button id="btn1" class="btn waves-effect" type="submit" name="action">Go!</button>
+                  <button id="btn1" class="btn waves-effect" type="submit" name="action"><i class="fas fa-search"></i></button>
                 </div>
               </div>
             </form>
+            <div class="input-field col s2">
+              <button id="btnRandom1" class="btn waves-effect"><i class="fas fa-random"></i></button>
+            </div>
           </div>
           <div class="card hoverable s12">
             <div class="card-content center">
@@ -58,7 +63,7 @@
           </div>
         </div>
 
-        <!-- Pokemon Info -->
+        <!-- Pokemon Data -->
         <div class="col s12 m8">
           <div class="card">
             <div class="card-content">

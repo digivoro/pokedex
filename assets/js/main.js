@@ -34,6 +34,10 @@ $(function() {
     getPokemon(id1.toLowerCase(), 1);
     $("#input1").val("");
   });
+
+  $("#btnRandom1").click(function(e) {
+    getPokemon(Math.floor(Math.random() * 807), 1);
+  });
 });
 
 function getPokemon(id, cardNumber) {
