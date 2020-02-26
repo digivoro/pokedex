@@ -48,9 +48,30 @@ function getPokemon(id, cardNumber) {
     success: function(res) {
       console.log(res);
       setPokemonData(cardNumber, res);
+      $("#abilities").html("");
+      $("#abilities").append(crearAbility(res));
     },
     error: function() {
       console.log("No se ha podido obtener la información");
+    },
+    complete: function(e) {
+      let i = 1;
+      let effectTexts = [];
+      for (const item of e.responseJSON.abilities) {
+        $.ajax({
+          type: "GET",
+          url: item.ability.url,
+          dataType: "json",
+          success: function(response) {
+            effectTexts.push(response.effect_entries[0].effect);
+            document.getElementById(`abilityText${i}`).innerHTML = effectTexts[i - 1];
+            i++;
+          },
+          error: function() {
+            console.log("No se ha podido obtener la información");
+          }
+        });
+      }
     }
   });
 }
@@ -74,8 +95,6 @@ async function setPokemonData(cardNumber, pokemonData) {
   $(pokeImageElem).attr("src", sprites.front_default);
 
   createChart(2, stats, container);
-  $("#abilities").html("");
-  await $("#abilities").append(crearAbility(pokemonData));
 }
 
 function createChart(cardNumber, stats, container) {
@@ -92,6 +111,7 @@ function createChart(cardNumber, stats, container) {
   var options = {
     animationEnabled: true,
     height: 260,
+    backgroundColor: "",
     axisY: {
       tickThickness: 0,
       lineThickness: 0,
@@ -113,11 +133,11 @@ function createChart(cardNumber, stats, container) {
         color: color,
         type: "bar",
         dataPoints: [
-          { y: spd, label: "Speed" },
-          { y: sdef, label: "Sp. Defense" },
-          { y: satk, label: "Sp. Attack" },
-          { y: def, label: "Defense" },
-          { y: atk, label: "Attack" },
+          { y: spd, label: "SPEED" },
+          { y: sdef, label: "SP. DEFENSE" },
+          { y: satk, label: "SP. ATTACK" },
+          { y: def, label: "DEFENSE" },
+          { y: atk, label: "ATTACK" },
           { y: hp, label: "HP" }
         ]
       }
@@ -129,32 +149,21 @@ function createChart(cardNumber, stats, container) {
 
 function crearAbility(pokemonData) {
   let abilitiesHTML = "";
-  let abilityText = "";
+  let i = 1;
 
   for (const item of pokemonData.abilities) {
-    $.ajax({
-      type: "GET",
-      url: item.ability.url,
-      dataType: "json",
-      success: function(res) {
-        abilityText = res.effect_entries[0].effect;
-        console.log(abilityText);
-      },
-      error: function() {
-        console.log("crearAbility(): No se ha podido obtener la información");
-      }
-    });
-
     abilitiesHTML += `<div class="row">
-      <div class="card">
+      <div class="card hoverable">
         <div class="card-content">
+
           <div class="card-title">
           ${item.ability.name.toUpperCase()}
           </div>
-          <p id="abilityText${item}"></p>
+          <div id="abilityText${i}"></div>
         </div>
       </div>
     </div>`;
+    i++;
   }
 
   return abilitiesHTML;
