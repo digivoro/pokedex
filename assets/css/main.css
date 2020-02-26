@@ -46,10 +46,6 @@ a.canvasjs-chart-credit {
   background-color: #ff3d00;
 }
 
-.card-content.grey {
-  /* height: ; */
-}
-
 .pokemon .row {
   margin-bottom: 0;
 }
@@ -79,18 +75,7 @@ button {
 
 #banner img {
   height: 100px;
-  width: 40%;
-  object-fit: cover;
-  object-position: 0 calc(100vw -170px);
-}
-
-/* #banner:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 64px;
   width: 100%;
-  height: 150px;
-  display: inline-block;
-  background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0) 100%); W3C
-} */
+  object-fit: cover;
+  object-position: 0 -250px;
+}
