@@ -72,6 +72,21 @@ function getPokemon(id, cardNumber) {
           }
         });
       }
+
+      $.ajax({
+        type: "GET",
+        url: e.responseJSON.species.url,
+        dataType: "json",
+        success: function(response) {
+          let flavorTextEntries = response.flavor_text_entries;
+          let englishFlavorTextEntries = flavorTextEntries.filter(entry => entry.language.name === "en");
+          let flavorText = englishFlavorTextEntries[0].flavor_text;
+          $("#poke-description").text(flavorText);
+        },
+        error: function() {
+          console.log("No se ha podido obtener la información");
+        }
+      });
     }
   });
 }
@@ -81,18 +96,28 @@ async function setPokemonData(cardNumber, pokemonData) {
   const pokeNumberElem = `#poke-number${cardNumber}`;
   const pokeTypeElem = `#poke-type${cardNumber}`;
   const pokeImageElem = `#poke-image${cardNumber}`;
+  const pokeWeightElem = `#poke-weight`;
+  const pokeHeightElem = `#poke-height`;
 
-  const { species, types, sprites, id, stats } = pokemonData;
+  const { species, types, id, stats, height, weight } = pokemonData;
 
+  let imgId = String(id);
+  while (imgId.length < 3) {
+    imgId = "0" + imgId;
+  }
+  let imageUrl = `https://serebii.net/pokemon/art/${imgId}.png`;
   let container = `#stats__graph`;
 
   $(pokeNameElem).text(species.name.toUpperCase());
   $(pokeNumberElem).text(id);
   $(pokeTypeElem).html(``);
+  $(pokeWeightElem).text(weight);
+  $(pokeHeightElem).text(height);
+
   for (let type of types) {
     $(pokeTypeElem).append(`<span class="new badge" style="background-color: ${typeColors[type.type.name]}" data-badge-caption="">${type.type.name.toUpperCase()}</span>`);
   }
-  $(pokeImageElem).attr("src", sprites.front_default);
+  $(pokeImageElem).attr("src", imageUrl);
 
   createChart(2, stats, container);
 }
