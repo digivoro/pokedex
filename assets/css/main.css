@@ -24,6 +24,9 @@ a.canvasjs-chart-credit {
 #poke-image1,
 #poke-image2 {
   height: 128px;
+  width: 128px;
+  object-fit: auto;
+  object-position: center;
 }
 
 .container {

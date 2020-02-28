@@ -82,11 +82,11 @@ async function setPokemonData(cardNumber, pokemonData) {
   const pokeTypeElem = `#poke-type${cardNumber}`;
   const pokeImageElem = `#poke-image${cardNumber}`;
 
-  const { name, types, sprites, id, stats } = pokemonData;
+  const { species, types, sprites, id, stats } = pokemonData;
 
   let container = `#stats__graph`;
 
-  $(pokeNameElem).text(name.toUpperCase());
+  $(pokeNameElem).text(species.name.toUpperCase());
   $(pokeNumberElem).text(id);
   $(pokeTypeElem).html(``);
   for (let type of types) {
