@@ -43,6 +43,11 @@ function setPokemonData(cardNumber, pokemonData) {
 
   const { name, types, sprites, id, stats } = pokemonData;
 
+  let imgId = String(id);
+  while (imgId.length < 3) {
+    imgId = "0" + imgId;
+  }
+  let imageUrl = `https://serebii.net/pokemon/art/${imgId}.png`;
   let container = `#chartContainer${cardNumber}`;
 
   $(pokeNameElem).text(name.toUpperCase());
@@ -51,7 +56,7 @@ function setPokemonData(cardNumber, pokemonData) {
   for (let type of types) {
     $(pokeTypeElem).append(`<span class="new badge" style="background-color: ${typeColors[type.type.name]}" data-badge-caption="">${type.type.name.toUpperCase()}</span>`);
   }
-  $(pokeImageElem).attr("src", sprites.front_default);
+  $(pokeImageElem).attr("src", imageUrl);
 
   createChart(cardNumber, stats, container);
 }
@@ -78,7 +83,7 @@ function createChart(cardNumber, stats, container) {
   }
   var options = {
     animationEnabled: true,
-    height: 320,
+    height: 400,
     axisY: {
       tickThickness: 0,
       lineThickness: 0,
