@@ -46,7 +46,7 @@ function getPokemon(id, cardNumber) {
     url: `https://pokeapi.co/api/v2/pokemon/${id}/`,
     dataType: "json",
     success: function(res) {
-      console.log(res);
+      // console.log(res);
       setPokemonData(cardNumber, res);
       $("#abilities").html("");
       $("#abilities").append(crearAbility(res));
